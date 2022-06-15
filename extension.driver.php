@@ -15,7 +15,7 @@
 		public function uninstall() {
 		}
 		
-		public function update($previousVersion) {
+		public function update($previousVersion = false) {
 			return true;
 		}
 
@@ -72,6 +72,7 @@
 			else if (!empty($handle)) {
 				$existing = DatasourceManager::create($handle, NULL, false);
 				if (!empty($existing)) {
+				  $existing->dsParamParametrisator = $existing->dsParamParametrisator ?? null;
 					if (is_array($existing->dsParamParametrisator)) {
 						$parametrisator = $existing->dsParamParametrisator;
 					}
